@@ -1,0 +1,13 @@
+{
+	"name": "helloworld",
+	"version": "1.0.0",
+	"description": "IaaS Task 1 - Create Node App",
+	"author": "Sebastian Richter, Marco Glaser",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"express": "^4.16.4"
+	}
+}

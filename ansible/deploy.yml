@@ -1,0 +1,41 @@
+- hosts: all
+  user: ubuntu
+  become_user: root
+  become: yes
+  gather_facts: False
+  
+  tasks: 
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+- hosts: all
+  user: ubuntu
+  become_user: root
+  become: yes
+
+  tasks:
+  - name: install nodejs and npm
+    apt: name={{ item }}  update_cache=yes state=latest
+    with_items:
+      - nodejs
+      - npm
+  - name: create app directory
+    file:
+      path: /opt/app
+      state: directory
+  - name: copy app files (package.json and index.js) to new remote directory
+    copy:
+      src: /home/ubuntu/bigdata/nodeapp/
+      dest: /opt/app
+  - name: Install packages based on package.json.
+    npm:
+      path: /opt/app/
+  - name: Install pm2 node.js package globally.
+    npm:
+      name: pm2
+      global: yes
+  - name: Stop app
+    command: pm2 -s stop helloworld chdir=/opt/app/
+    ignore_errors: True
+  - name: Start app
+    command:  pm2 -s start index.js --name helloworld chdir=/opt/app/
