@@ -1,13 +1,16 @@
 {
-	"name": "helloworld",
-	"version": "1.0.0",
-	"description": "IaaS Task 1 - Create Node App",
-	"author": "Sebastian Richter, Marco Glaser",
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js"
-	},
-	"dependencies": {
-		"express": "^4.16.4"
-	}
+  "name": "nodejs-dokku-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "memcached": "^2.2.2",
+    "mysql": "^2.15.0"
+  }
 }
